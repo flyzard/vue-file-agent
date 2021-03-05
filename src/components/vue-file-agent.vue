@@ -21,6 +21,7 @@
     ]"
     :id="'vfa-' + uniqueId"
   >
+
     <slot name="before-outer"></slot>
     <div
       class="grid-block-wrapper vue-file-agent file-input-wrapper"
@@ -38,8 +39,7 @@
         <div class="overall-progress-left" :style="{ width: 100 - overallProgress + '%' }"></div>
       </div>
 
-      <component
-        :is="isSortable ? 'vfa-sortable-list' : 'VueFileList'"
+      <vfa-sortable-list
         v-model="fileRecords"
         :axis="theme == 'list' ? 'y' : 'xy'"
         :appendTo="'#vfa-' + uniqueId + ' .vue-file-agent'"
@@ -52,8 +52,7 @@
       >
         <transition-group name="grid-box" tag="div" class="">
           <!-- <template v-for="(fileRecord, index) in fileRecords"> -->
-          <component
-            :is="isSortable ? 'vfa-sortable-item' : 'VueFileListItem'"
+          <vfa-sortable-item
             v-for="(fileRecord, index) in fileRecords"
             class="file-preview-wrapper grid-box-item grid-block"
             :index="index"
@@ -84,7 +83,7 @@
             </slot>
             <slot name="file-preview-after" :fileRecord="fileRecord" :fileData="fileRecord" :index="index">
             </slot>
-          </component>
+          </vfa-sortable-item>
           <!-- </template> -->
           <template v-if="canAddMore && readonly !== true">
             <slot name="file-preview-new">
@@ -99,7 +98,7 @@
             </slot>
           </template>
         </transition-group>
-      </component>
+      </vfa-sortable-list>
       <input
         title=""
         :disabled="disabled === true || (hasMultiple && !canAddMore)"
@@ -123,8 +122,13 @@
 <script lang="ts">
 import Vue from 'vue';
 import mixin from './vue-file-agent-mixin';
+import { SlickList, SlickItem } from 'vue-slicksort';
 
 export default Vue.extend({
   mixins: [mixin],
+  components: {
+    'vfa-sortable-item': SlickItem,
+    'vfa-sortable-list': SlickList
+  }
 });
 </script>

@@ -29,8 +29,7 @@ export class VueFileAgentPlugin implements Vue.PluginObject<any> {
     Vue.component('VueFileList', VueFileList);
     Vue.component('VueFileListItem', VueFileListItem);
     Vue.component('VueFileAgent', VueFileAgent);
-    Vue.component('vfa-sortable-list', SlickList);
-    Vue.component('vfa-sortable-item', SlickItem);
+    
     Vue.prototype.$vueFileAgent = {
       mixin: VueFileAgentMixin,
     };
