@@ -5,7 +5,6 @@ import VueFileListItem from './components/vue-file-list-item.vue';
 import VueFileAgent from './components/vue-file-agent.vue';
 import VueFileAgentMixin from './components/vue-file-agent-mixin';
 import VueFilePreviewMixin from './components/vue-file-preview-mixin';
-import { SlickList, SlickItem } from 'vue-slicksort';
 import utils from './lib/utils';
 import plugins from './lib/plugins';
 import FileRecord from './lib/file-record';
